@@ -1,0 +1,247 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Haritanın diğer öğelerin altında görünmesini sağlar */
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+.navbar {
+  margin: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+  padding: 10px;
+  border: 1px solid #b4bbc2;
+  border-radius: 5px;
+  background-color: #d2dae2e2;
+  color: white;
+  text-align: center;
+  z-index: 1000; /* Navbar'ı haritanın üstünde görünür */
+}
+
+.navbar button {
+  background-color: #e84118;
+  border: none;
+  color: white; /* Yazı rengi */
+  padding: 10px 20px;
+  margin: 10px 20px;
+  border-radius: 5px;
+}
+
+.navbar button:hover {
+  background-color: #c23616;
+  color: white; /* Yazı rengini değiştirir */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 5px;
+  border: none;
+  width: 50%;
+  max-width: 900px; /* Maksimum genişliği ayarlayın */
+}
+
+.modal-content button {
+  margin: 15px 250px;
+  padding: 5px 10px;
+  background-color: #7bed9f;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+.modal-content button:hover {
+  background-color: #2ed573;
+}
+
+.close {
+  color: #757272;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #c23616;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input, form button {
+  margin-bottom: 0;
+  padding: 10px;
+}
+label {
+    
+    margin-bottom: 5px; /* Alt boşluk */
+    display: block; /* Yeni satıra geçmesini sağlar */
+    color: #333; /* Yazı rengi */
+}
+#shapeType {
+  width: 100%; /* Genişlik ayarı */
+  max-width: 300px; /* Maksimum genişlik */
+  padding: 5px; /* İç boşluk */
+  border: 1px solid #ccc; /* Kenarlık */
+  border-radius: 5px; /* Kenar yuvarlama */
+  background-color: #f9f9f9; /* Arka plan rengi */
+  font-size: 16px; /* Yazı boyutu */
+  color: #333; /* Yazı rengi */
+  appearance: none; /* Varsayılan stil kaldırma */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="gray" d="M7 10l5 5 5-5H7z"/></svg>'); /* Aşağı ok simgesi */
+  background-repeat: no-repeat; /* Arka plan simgesi tekrarlanmaz */
+  background-position: right 150px center; /* Simgelerin konumu */
+  background-size: 12px; /* Simgelerin boyutu */
+  align-items: center;
+}
+
+#shapeType:focus {
+  border-color: #4CAF50; /* Odaklandığında kenar rengi */
+  outline: none; /* Varsayılan odak çerçevesini kaldır */
+}
+
+#geometryTable {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  background-color: #bdc1c6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: block; /* Tablonun taşmasını önler */
+overflow: hidden;
+}
+
+#geometryTable thead {
+  background-color: #575fcf;
+  color: #ffffff;
+}
+
+#geometryTable th , #geometryTable td {
+  padding: 15px 15px;
+  text-align: center;
+  border-bottom: none;
+  
+  
+}
+
+#geometryTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#geometryTable th {
+  font-weight: bold;
+}
+
+/* DataTables Arama Kutusu ve Diğer Bileşenler */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 2px ;
+  margin: 5px;
+  border-radius: 4px;
+  border: 1px solid black;
+  color: #485460;
+  background-color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: #3c40c6;
+  color: #ffffff;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  margin: 5px;
+  padding: 4px 4px;
+  font-size: 12px;
+}
+
+.dataTables_wrapper .dataTables_info {
+  font-size: 8px;
+}
+
+/* Actions Container İçindeki Buton Stilleri */
+.actions-container {
+  display: flex; /* Flexbox ile hizalama */
+  justify-content: center; /* Butonlar arasında boşluk bırakır ve ortalar */
+  align-items: center; /* Butonları dikeyde ortalar */
+}
+.actions-container .action-btn {
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block; /* Yanyana hizalama için */
+  margin: 5px; /* Butonlar arasındaki boşluk */
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30px; /* Buton genişliği */
+  height: 30px; /* Buton yüksekliği */
+  background-size: 25px; /* Resmin butona uyumunu sağlar */
+  background-repeat: no-repeat; /* Resmin tekrarını engeller */
+  background-position: center; /* Resmin butonun ortasında hizalanmasını sağlar */
+  line-height: 0; /* İçerik hizalamasını sağlar (metin hizalaması için) */
+}
+
+/* Göster Butonu Stili */
+.actions-container .show-btn {
+  background-image: url('show.png');
+  background-color: #808e9b;
+}
+
+/* Güncelle Butonu Stili */
+.actions-container .update-btn {
+  background-image: url('update.png');
+  background-color: #808e9b;
+}
+
+/* Sil Butonu Stili */
+.actions-container .delete-btn {
+  background-image: url('delete.png');
+  background-color: #808e9b;
+}
+
+/* Actions Container İçindeki Butonlar için Hover Stili */
+.actions-container .action-btn:hover {
+  background-color: #d2dae2;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: white;
+  border: 1px solid rgb(218, 50, 50);
+  padding: 5px;
+  border-radius: 3px;
+  display: none;
+  pointer-events: none;
+}

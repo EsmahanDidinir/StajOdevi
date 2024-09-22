@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harita Projesi</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="map-container">
+    <div id="map" class="map"></div>
+  </div>
+  <div class="navbar">
+    <button id="addPointBtn">Add Point</button>
+    <button id="queryBtn">Query</button>
+  </div>
+
+  <!-- Shape Select Modal -->
+  <div id="shapeSelectModal" class="modal">
+    <div class="modal-content">
+      <span id="closeShapeSelectModal" class="close">&times;</span>
+      <h2>Select Shape Type</h2>
+      <form id="shapeSelectForm">
+        <label for="shapeType">Shape Type:</label>
+        <select id="shapeType" name="shapeType">
+          <option value="POINT">Point</option>
+          <option value="LINESTRING">LineString</option>
+          <option value="POLYGON">Polygon</option>
+          <option value="CIRCLE">Circle</option>
+        </select>
+        <button type="submit">Select</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Shape Modal -->
+  <div id="addModal" class="modal">
+    <div class="modal-content">
+      <span id="closeAddModal" class="close">&times;</span>
+      <h2>Add Shape</h2>
+      <form id="addShapeForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <input type="hidden" id="shapeCoordinates" name="coordinates">
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+<!-- Shape Panel Modal -->
+<div id="shapePanel" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Shape Information</h2>
+      <label for="shapeName">Name:</label>
+      <input type="text" id="shapeName">
+      <label for="shapeGeometry">Geometry:</label>
+      <textarea id="shapeGeometry" readonly></textarea>
+      <button id="saveShapeBtn">Save Shape</button>
+  </div>
+</div>
+
+
+<!-- Query Modal -->
+<div id="queryModal" class="modal">
+  <div class="modal-content">
+    <span id="closeQueryModal" class="close">&times;</span>
+    <table id="geometryTable" class="display">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Geometry</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Geometriler burada listelenecek -->
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Güncelleme Seçenekleri Paneli -->
+<div id="updateOptionsPanel" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Güncelleme Seçenekleri</h2>
+    <button id="panelUpdateBtn">Panel ile Güncelle</button>
+    <button id="manualUpdateBtn">Manuel Güncelle</button>
+  </div>
+</div>
+
+
+<!-- Geometri Güncelleme Paneli -->
+<div id="geometryUpdatePanel" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Geometry Update</h2>
+    <label for="updateShapeId">ID:</label>
+    <input type="text" id="updateShapeId" readonly>
+    
+    <label for="shapeName1">Name:</label>
+    <input type="text" id="shapeName1">
+
+    <label for="updateShapeGeometry">Geometry:</label>
+    <textarea id="updateShapeGeometry"></textarea>
+    <button id="submitUpdateBtn">Update Geometry</button>
+  </div>
+</div>
+
+
+ 
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
